@@ -19,16 +19,16 @@ Acest fișier este declanșatorul skill-ului care adaugă surse de referință. 
 
 ## Rezultat
 
-Ce construim și pentru cine.
+<!-- Ce construim și pentru cine. -->
 
 ## Platformă și stack existent
 
-Platforma țintă și tehnologiile deja prezente în manifest și lockfile.
+<!-- Platforma țintă și tehnologiile deja prezente în manifest și lockfile. -->
 
 ## Criteriu de acceptare
 
-Cum verificăm concret că rezultatul funcționează.
+<!-- Cum verificăm concret că rezultatul funcționează. -->
 
 ## Pași
 
-1. De completat.
+<!-- 1. De completat. -->

@@ -33,3 +33,7 @@ Autorizarea permite o descărcare; nu o cere. Conform regulilor 3 și 8 din [`AG
 ## Când aprobarea expiră
 
 Orice modificare a listei `technologies` sau a criteriului de acceptare după aprobare readuce `status` la `draft`. Planul trebuie aprobat din nou înainte ca skill-ul să ruleze.
+
+## Verificarea automată
+
+CI-ul rulează [`scripts/check_repo.py`](../scripts/check_repo.py) la fiecare push în `main` și la fiecare PR. Pentru un plan cu `status: approved`, scriptul verifică regulile de mai sus și eșuează dacă una nu este îndeplinită. Textul ajutător din secțiunile planului este scris în comentarii HTML, deci o secțiune care conține doar comentariul este considerată goală. Rulează local cu `python3 scripts/check_repo.py`.
