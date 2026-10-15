@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Catalog Core Ideas</title>
+<link rel="stylesheet" href="../../../.claude/plugins/cache/claude-community/html-plan/1.0.0/skills/html-plan/runtime/htmlplan.css">
+<script src="../../../.claude/plugins/cache/claude-community/html-plan/1.0.0/skills/html-plan/runtime/htmlplan.js" defer></script>
+<body>
+<header>
+  <h1>Core Ideas of the Reference Catalog</h1>
+  <details class="thread"><summary>Why · 2 sources</summary>
+    <doc-quote via="prompt" from="the user">use it to explain the core ideeas</doc-quote>
+    <doc-quote via="doc" from="README.md">Pornim cu zero repository-uri descărcate. Adăugăm unul numai când rezolvă o întrebare concretă din sarcina curentă.</doc-quote>
+  </details>
+</header>
+<main>
+<doc-plan>
+
+<doc-claim>
+  <p>The agent starts with zero source checkouts.</p>
+  <doc-mock frame="terminal" title="catalog" w="420" caption="Both source folders were absent on 6 October 2026.">
+<template><span class="dim">references/</span>  <span class="r">absent</span>
+<span class="dim">repos/</span>       <span class="r">absent</span>
+<span class="dim">downloaded</span>   <b>0</b></template>
+  </doc-mock>
+  <doc-claim>
+    <p>The selection log shows zero downloads.</p>
+    <doc-code src="docs/reference-selection.md" lines="3-9" hl="7" wrap caption="The log is the record of downloads.">
+      <doc-pin line="7" title="The count is zero">No source was downloaded for this catalog.</doc-pin>
+    </doc-code>
+  </doc-claim>
+  <doc-claim>
+    <p>The instructions say to start at zero.</p>
+    <doc-code src="AGENTS.md" lines="25" hl="25" wrap caption="Rule 3 is the start rule.">
+      <doc-pin line="25" title="Start at zero">A package install is not a clone.</doc-pin>
+    </doc-code>
+  </doc-claim>
+</doc-claim>
+
+<doc-claim>
+  <p>The agent picks one stack for the task.</p>
+  <doc-code src="README.md" lines="11-13" hl="13" wrap caption="One task has one start row.">
+    <doc-pin line="13" title="One start row">A simple page starts at HTML + CSS.</doc-pin>
+  </doc-code>
+  <doc-claim>
+    <p>The agent reads the catalog before a checkout.</p>
+    <doc-code src="AGENTS.md" lines="21" hl="21" wrap caption="Read the catalog before a checkout.">
+      <doc-pin line="21" title="Catalog first">Read the section that matches the task.</doc-pin>
+    </doc-code>
+  </doc-claim>
+  <doc-claim>
+    <p>A new task uses the smallest stack.</p>
+    <doc-code src="AGENTS.md" lines="24" hl="24" wrap caption="Four UI frameworks stay alternatives.">
+      <doc-pin line="24" title="Smallest stack">Add a second framework only for a required integration.</doc-pin>
+    </doc-code>
+  </doc-claim>
+</doc-claim>
+
+<doc-claim>
+  <p>A package install does not clone the source.</p>
+  <doc-code src="docs/on-demand-references.md" lines="5-11" hl="8,11" wrap caption="The references/ row is the default local copy.">
+    <doc-pin line="8" title="Default local copy">Use this row for one open question.</doc-pin>
+    <doc-pin line="11" tone="info" title="Git exists, no checkout">No references folder and no repos folder.</doc-pin>
+  </doc-code>
+  <doc-ask id="copy">
+    <p>Which local copy does the agent make first?</p>
+    <label><input type="radio" name="copy" value="references" checked> A folder in references/ <small>The copy stays out of Git.</small></label>
+    <label><input type="radio" name="copy" value="subtree"> A subtree in repos/ <small>Use claim 3.3 first.</small></label>
+  </doc-ask>
+  <div data-if="copy=subtree"><doc-note tone="info">Use claim 3.3 first. Claim 3.2 stays for a disposable copy.</doc-note></div>
+  <doc-claim>
+    <p>An install and a clone are two acts.</p>
+    <doc-code src="README.md" lines="47" hl="47" wrap caption="The package runs in the app. The copy is for study.">
+      <doc-pin line="47" title="Two acts">Do not import the copy into the app.</doc-pin>
+    </doc-code>
+  </doc-claim>
+  <doc-claim>
+    <p>A disposable checkout goes in references/.</p>
+    <doc-tree caption="Git ignores the new checkout folder.">
+<script type="text/plain">
++ references/   # not on disk yet
+  + name/       # one library at one tag
+~ .gitignore    # line 2 ignores references/
+</script>
+    </doc-tree>
+    <doc-claim at=".gitignore:2">
+      <p><b>.gitignore:2</b> · /references/</p>
+      <doc-code src=".gitignore" lines="1-2" hl="2" caption="This line keeps the checkout out of Git.">
+        <doc-pin line="2" title="Ignored path">Do not force-add this folder.</doc-pin>
+      </doc-code>
+    </doc-claim>
+  </doc-claim>
+  <doc-claim>
+    <p>A shared source uses git subtree.</p>
+    <doc-code src="docs/on-demand-references.md" lines="45-61" hl="60" wrap caption="The command is a template. It was not run.">
+      <doc-pin line="60" title="Not run">subtree add needs a new repos/ folder.</doc-pin>
+    </doc-code>
+    <doc-claim at="docs/on-demand-references.md:60">
+      <p><b>on-demand-references.md:60</b> · subtree add</p>
+      <doc-code src="docs/on-demand-references.md" lines="60-61" hl="60" caption="Squash keeps one upstream commit in the project.">
+        <doc-pin line="60" title="subtree add">The tag is the installed version.</doc-pin>
+      </doc-code>
+    </doc-claim>
+  </doc-claim>
+</doc-claim>
+
+<doc-claim>
+  <p>A checkout uses the installed version tag.</p>
+  <doc-code src="docs/on-demand-references.md" lines="22-27" hl="26" caption="The branch value is the verified tag.">
+    <doc-pin line="26" title="Verified tag">Replace each REPLACE_ value before a run.</doc-pin>
+  </doc-code>
+  <doc-ask id="taggap">
+    <p>If no tag maps to the version, what then?</p>
+    <label><input type="radio" name="taggap" value="record" checked> Record the gap and do not clone <small>Claim 4.1 stays.</small></label>
+    <label><input type="radio" name="taggap" value="main"> Use the main branch <small>Claim 4.1 goes.</small></label>
+  </doc-ask>
+  <div data-if="taggap=main"><doc-note tone="warn">Then claim 4.1 goes. Do not record main as the installed version.</doc-note></div>
+  <doc-claim>
+    <p>The agent does not use main in place of the tag.</p>
+    <doc-code src="AGENTS.md" lines="28" hl="28" wrap caption="Main, master, and a newer major stay out.">
+      <doc-pin line="28" title="Keep the installed tag">A monorepo can use a package tag.</doc-pin>
+    </doc-code>
+  </doc-claim>
+  <doc-claim>
+    <p>The agent records the tag and the full SHA.</p>
+    <doc-code src="docs/on-demand-references.md" lines="37" hl="37" wrap caption="Write the tag, the full SHA, and the path in the log.">
+      <doc-pin line="37" title="Write the record">Depth 1 limits history, not files.</doc-pin>
+    </doc-code>
+    <doc-claim at="docs/on-demand-references.md:33">
+      <p><b>on-demand-references.md:33</b> · rev-parse HEAD</p>
+      <doc-code src="docs/on-demand-references.md" lines="33-34" hl="33" caption="Run these two commands after a successful clone.">
+        <doc-pin line="33" title="Full SHA">describe must match the tag.</doc-pin>
+      </doc-code>
+    </doc-claim>
+  </doc-claim>
+</doc-claim>
+
+<doc-claim>
+  <p>The agent stops at the first answer.</p>
+  <doc-machine name="fetch" caption="The top row stops when the docs are enough.">
+<script type="text/plain">
+machine fetch initial none
+state none "None" # The disk has no checkout.
+state docs "Docs" # The agent reads the official docs.
+state one "Clone" # The agent clones one tag.
+state halt "Stop" final # The docs give the answer. No clone.
+state done "Done" final # The clone gives the answer.
+
+| none | docs | halt |
+| .    | one  | done |
+
+none -task-> docs
+docs -stop-> halt
+docs -gap-> one
+one -end-> done
+</script>
+    <div data-state="none"><doc-mock frame="terminal" title="catalog" w="420"><template><span class="dim">references/</span> <span class="r">absent</span>
+<span class="dim">repos/</span> <span class="r">absent</span></template></doc-mock></div>
+    <div data-state="docs"><doc-mock frame="terminal" title="catalog" w="420"><template><span class="dim">read</span> official docs
+<span class="dim">for</span> the installed version</template></doc-mock></div>
+    <div data-state="one"><doc-mock frame="terminal" title="catalog" w="420"><template><span class="g">git clone</span> --branch <b>TAG</b>
+<span class="dim">path</span> references/NAME</template></doc-mock></div>
+    <div data-state="halt"><doc-mock frame="terminal" title="catalog" w="420"><template><span class="g">stop</span>
+<span class="dim">do not fetch the next catalog row</span></template></doc-mock></div>
+    <div data-state="done"><doc-mock frame="terminal" title="catalog" w="420"><template><span class="g">answer</span>
+<span class="dim">stop after this one clone</span></template></doc-mock></div>
+  </doc-machine>
+  <doc-ask id="clone">
+    <p>If the docs give the answer, does the agent clone?</p>
+    <label><input type="radio" name="clone" value="no" checked> No. Zero clones can be the result <small>Claims 1 and 5 stay.</small></label>
+    <label><input type="radio" name="clone" value="yes"> Yes. Clone each catalog row <small>Claims 1 and 5 go.</small></label>
+  </doc-ask>
+  <div data-if="clone=yes"><doc-note tone="warn">Then claims 1 and 5 go. The agent clones each catalog row.</doc-note></div>
+  <doc-claim>
+    <p>The agent fetches one reference at a time.</p>
+    <doc-code src="AGENTS.md" lines="30" hl="30" wrap caption="Zero references is a valid result.">
+      <doc-pin line="30" title="One at a time">Stop when the question has an answer.</doc-pin>
+    </doc-code>
+  </doc-claim>
+  <doc-claim>
+    <p>The agent does not import code from a checkout.</p>
+    <doc-code src="AGENTS.md" lines="37" hl="37" wrap caption="Use the normal package. Do not run the checkout.">
+      <doc-pin line="37" title="No import">The checkout is read-only study material.</doc-pin>
+    </doc-code>
+  </doc-claim>
+  <doc-claim>
+    <p>The agent reads examples before implementation.</p>
+    <doc-code src="AGENTS.md" lines="36" hl="36" wrap caption="Read examples, tests, and the public API first.">
+      <doc-pin line="36" title="Read order">Do not load the whole repository.</doc-pin>
+    </doc-code>
+  </doc-claim>
+</doc-claim>
+
+<doc-claim aux="shared">
+  <p>One sheet records each selected source.</p>
+  <doc-schema id="sheet" lang="md" src="docs/reference-selection.md" lines="13-29" wrap title="selection sheet" caption="Fill one sheet for each source. Do not copy the whole catalog.">
+    <doc-pin line="13" title="One source per sheet">Write the sheet only for a real task.</doc-pin>
+  </doc-schema>
+</doc-claim>
+
+<doc-claim aux="scope">
+  <p>These rules do not add an application.</p>
+  <ul>
+    <li>There is no application code in this folder.</li>
+    <li>There is no package install in this work.</li>
+    <li>This work does not run git clone or subtree add.</li>
+    <li>The download count stays at zero.</li>
+    <li>Effect is not required for each app.</li>
+    <li>Do not delete an old reference without approval.</li>
+  </ul>
+</doc-claim>
+
+</doc-plan>
+</main>
+</body>
+</html>

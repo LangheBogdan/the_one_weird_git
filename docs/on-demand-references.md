@@ -8,7 +8,7 @@
 | Agentul trebuie să citească implementarea pentru sarcina curentă | Checkout local în `references/<name>/`, exclus din Git |
 | Echipa trebuie să primească aceeași sursă odată cu proiectul | `git subtree --squash` în `repos/<name>/` |
 
-Recomandarea pentru acest catalog este checkout-ul local la nevoie. `git subtree` rămâne disponibil pentru referințe comune și persistente, după modelul [articolului Effect](https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive). Folderul de față nu este încă un repository Git valid; nu am inițializat Git și nu am descărcat surse.
+Recomandarea pentru acest catalog este checkout-ul local la nevoie. `git subtree` rămâne disponibil pentru referințe comune și persistente, după modelul [articolului Effect](https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive). Textul din 1 octombrie 2026 spunea că folderul nu este un repository Git și că nu există surse descărcate. La 6 octombrie 2026 `git rev-parse HEAD` arată `36bff09c1376788436c4474cc6e71ccf6773dc55` pe `main`, iar `git status --short` este gol. Directoarele `references/` și `repos/` lipsesc. Comenzile `git clone` și `git subtree add` nu au fost rulate.
 
 ## Înainte de descărcare
 

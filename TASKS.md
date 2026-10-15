@@ -6,6 +6,7 @@
 - [x] Write a task-based catalog with minimal selections and optional alternatives.
 - [x] Write agent instructions and a version-pinned reference download workflow.
 - [x] Check links, consistency, and the final workspace contents.
+- [x] Explain the core selection rules in `docs/core-ideas.html`.
 
 ## Scope
 
@@ -17,4 +18,4 @@ Create reference documentation only. Do not clone repositories, install dependen
 - Official repository pages and documentation were consulted on 2026-10-01. Source-reading limitations for Phaser and Babylon.js are recorded in `docs/mobile-game-sources.md`.
 - Git subtree syntax was checked against official documentation and local help. Download/import commands were not executed.
 - No `references/` or `repos/` directory exists; the selection log records zero downloads.
-- This workspace is not a valid Git repository; no commit or Git diff is available.
+- On 2026-10-06 `git rev-parse HEAD` shows `36bff09c1376788436c4474cc6e71ccf6773dc55` on `main`, and `git status --short` was empty. The 2026-10-01 note that this folder was not a Git repository is out of date. `references/` and `repos/` still do not exist. No clone or `git subtree add` was run.

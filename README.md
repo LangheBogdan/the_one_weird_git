@@ -53,6 +53,7 @@ Pentru un joc Phaser distribuit ca aplicație mobilă, Capacitor poate fi o opț
 - [Descărcare la nevoie și alternativa `git subtree`](docs/on-demand-references.md)
 - [Instrucțiuni pentru agent](AGENTS.md)
 - [Registrul selecției curente](docs/reference-selection.md)
+- [Ideile de bază, plan interactiv](docs/core-ideas.packed.html)
 - [Progresul lucrării](TASKS.md)
 
 ## Relația cu articolul Effect
