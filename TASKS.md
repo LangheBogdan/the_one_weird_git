@@ -7,8 +7,9 @@
 - [x] Write agent instructions and a version-pinned reference download workflow.
 - [x] Check links, consistency, and the final workspace contents.
 - [x] Explain the core selection rules in `docs/core-ideas.html`.
+- [x] Define the approval trigger: `docs/implementation-plan.md` frontmatter, rules in `docs/approval-trigger.md`.
 - [x] Add the `add-approved-references` skill (runs after plan approval and technology authorization).
-- [ ] Merge the approval-trigger PR: the skill reads its rules from `docs/approval-trigger.md` and `docs/implementation-plan.md`.
+- [x] Check that the skill's trigger gate (section 1) applies the rules in `docs/approval-trigger.md`.
 
 ## Scope
 

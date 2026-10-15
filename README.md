@@ -53,6 +53,8 @@ Pentru un joc Phaser distribuit ca aplicație mobilă, Capacitor poate fi o opț
 - [Descărcare la nevoie și alternativa `git subtree`](docs/on-demand-references.md)
 - [Instrucțiuni pentru agent](AGENTS.md)
 - [Registrul selecției curente](docs/reference-selection.md)
+- [Planul de implementare, declanșatorul skill-ului](docs/implementation-plan.md)
+- [Regulile de aprobare și autorizare](docs/approval-trigger.md)
 - [Ideile de bază, plan interactiv](docs/core-ideas.packed.html)
 - [Progresul lucrării](TASKS.md)
 - [Skill-ul `add-approved-references`](.claude/skills/add-approved-references/SKILL.md): pornește după aprobarea planului și autorizarea tehnologiilor și adaugă doar sursele necesare
