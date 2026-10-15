@@ -7,6 +7,8 @@
 - [x] Write agent instructions and a version-pinned reference download workflow.
 - [x] Check links, consistency, and the final workspace contents.
 - [x] Explain the core selection rules in `docs/core-ideas.html`.
+- [x] Define the approval trigger: `docs/implementation-plan.md` frontmatter, rules in `docs/approval-trigger.md`.
+- [ ] Write the skill that reads the trigger and adds the required references.
 
 ## Scope
 
