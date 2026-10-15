@@ -8,7 +8,8 @@
 - [x] Check links, consistency, and the final workspace contents.
 - [x] Explain the core selection rules in `docs/core-ideas.html`.
 - [x] Define the approval trigger: `docs/implementation-plan.md` frontmatter, rules in `docs/approval-trigger.md`.
-- [ ] Write the skill that reads the trigger and adds the required references.
+- [x] Add the `add-approved-references` skill (runs after plan approval and technology authorization).
+- [x] Check that the skill's trigger gate (section 1) applies the rules in `docs/approval-trigger.md`.
 
 ## Scope
 
