@@ -8,7 +8,7 @@
 - [x] Check links, consistency, and the final workspace contents.
 - [x] Explain the core selection rules in `docs/core-ideas.html`.
 - [x] Add the `add-approved-references` skill (runs after plan approval and technology authorization).
-- [ ] Replace the skill's placeholder trigger (`docs/implementation-plan.md` frontmatter) once the approval signal is decided.
+- [ ] Merge the approval-trigger PR: the skill reads its rules from `docs/approval-trigger.md` and `docs/implementation-plan.md`.
 
 ## Scope
 

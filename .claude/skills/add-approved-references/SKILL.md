@@ -11,39 +11,19 @@ Adapts the [Effect "one weird git trick"](https://effect.website/blog/the-one-we
 
 ## 1. Trigger gate
 
-> **Swappable.** The approval signal is still being decided with the user. Only this section changes when it is; the rest of the skill reads the two outputs below.
+> **Swappable.** The approval rules live in `docs/approval-trigger.md`; this section only applies them. If the signal changes, change that file, not the rest of this skill.
 
-Placeholder signal: a plan file `docs/implementation-plan.md` whose YAML frontmatter looks like this:
-
-```yaml
----
-status: approved
-approved_by: FoameaNeagra
-approved_on: 2026-10-15
-technologies:
-  - name: Phaser
-    version: 3.90.0          # exact installed version, not a range
-    authorized: true
-    open_question: "How does scene shutdown release input listeners?"
-  - name: Capacitor
-    version: 7.4.2
-    authorized: true
-    open_question: null      # docs are enough; no source needed
----
-```
-
-The gate passes only when **all** hold:
-
-1. `status` is exactly `approved`, and `approved_by` and `approved_on` are filled.
-2. Every entry in `technologies` has `authorized: true` and an exact `version`.
+1. Read `docs/approval-trigger.md` and `docs/implementation-plan.md`. If either is missing, stop and say so in Romanian.
+2. Check every condition in `docs/approval-trigger.md` against the plan's YAML frontmatter and sections (plan approved, every `technologies` entry authorized with an exact version, list not empty). Approval given only in chat does not count.
+3. If any check fails, stop before any download and report in Romanian which condition or entry failed.
 
 Outputs for the next steps:
 
-- `PLAN` – the plan file body.
+- `PLAN` – the plan body (outcome, platform and stack, acceptance check).
 - `AUTHORIZED` – the `technologies` list.
-- `CANDIDATES` – the entries whose `open_question` is not empty. Only these may lead to a download.
+- `CANDIDATES` – the entries with a non-empty `open_question`. Only these may lead to a download.
 
-If the file is missing or any check fails, stop and say in Romanian which check failed. Do not infer approval from chat, a draft, a catalog row, or a dependency appearing in a lockfile. A technology not in `AUTHORIZED` is never fetched, even if the catalog suggests it.
+A technology not in `AUTHORIZED` is never fetched, even if the catalog suggests it. Use each entry's `repository` and `name` in steps 4–6, after checking the URL against the catalog row.
 
 ## 2. Establish the facts (no downloads yet)
 
