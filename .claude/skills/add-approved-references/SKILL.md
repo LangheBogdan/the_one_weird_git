@@ -14,7 +14,7 @@ Adapts the [Effect "one weird git trick"](https://effect.website/blog/the-one-we
 > **Swappable.** The approval rules live in `docs/approval-trigger.md`; this section only applies them. If the signal changes, change that file, not the rest of this skill.
 
 1. Read `docs/approval-trigger.md` and `docs/implementation-plan.md`. If either is missing, stop and say so in Romanian.
-2. Check every condition in `docs/approval-trigger.md` against the plan's YAML frontmatter and sections (plan approved, every `technologies` entry authorized with an exact version, list not empty). Approval given only in chat does not count.
+2. Check every condition in `docs/approval-trigger.md` against the plan's YAML frontmatter and sections (plan approved, every `technologies` entry authorized with an exact version, list not empty, `approved_hash` matching). Run `python3 scripts/check_repo.py`; it must print `All checks passed.` A mismatched `approved_hash` means the plan changed after approval, so it counts as not approved. Approval given only in chat does not count, and never write or update `approved_hash` yourself.
 3. If any check fails, stop before any download and report in Romanian which condition or entry failed.
 
 Outputs for the next steps:
@@ -97,7 +97,7 @@ Rules for both: never reuse a path for a different version (an upgrade gets a ne
 
 ## 7. Record the selection
 
-Fill a new entry in `docs/reference-selection.md` using its "Fișă pentru următoarea selecție" fields (in Romanian): task and acceptance check, existing stack, library, open question, docs consulted, official repository, installed version, tag and full SHA, local path and method, license, useful files, result, status (activă/inactivă). Update the Stare section's download count.
+Fill a new entry in `docs/reference-selection.md` using its "Fișă pentru următoarea selecție" fields (in Romanian): task and acceptance check, existing stack, library, open question, docs consulted, official repository, installed version, tag and full SHA, local path and method, license, useful files, result, confidence (verificat/dedus/presupunere), not checked, status (activă/inactivă). A gap you did not check is listed under "not checked", never reported as a pass. Update the Stare section's download count.
 
 ## 8. Read, then reassess
 

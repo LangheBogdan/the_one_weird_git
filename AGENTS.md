@@ -34,7 +34,7 @@ This workspace is a task-based reference catalog, not an application and not a b
 
 - Download references for a plan only when `docs/implementation-plan.md` meets every rule in `docs/approval-trigger.md`: `status: approved`, an approver and date, and every listed technology `authorized: true` with an exact version.
 - Authorization permits a download; it does not require one. Consider only entries with an `open_question`, one at a time.
-- Any change to the technology list or acceptance criterion after approval resets `status` to `draft`.
+- Any change to the technology list or acceptance criterion after approval resets `status` to `draft`. CI enforces this through `approved_hash` (`python3 scripts/check_repo.py --plan-hash`).
 
 ## Reference handling
 

@@ -1,6 +1,12 @@
-"""Repository checks run by CI and locally: python3 scripts/check_repo.py"""
+"""Repository checks run by CI and locally: python3 scripts/check_repo.py
+
+To approve the plan, print the fingerprint and copy it into approved_hash:
+    python3 scripts/check_repo.py --plan-hash
+"""
 
 import datetime
+import hashlib
+import json
 import re
 import sys
 from pathlib import Path
@@ -35,6 +41,28 @@ def split_frontmatter(path):
         return None, match.group(2)
 
 
+def section_text(body, section):
+    """Text of '## section' up to the next heading, without HTML comments."""
+    match = re.search(rf"^## {re.escape(section)}\n(.*?)(?=^## |\Z)", body, re.M | re.S)
+    if not match:
+        return ""
+    return re.sub(r"<!--.*?-->", "", match.group(1), flags=re.S).strip()
+
+
+def plan_hash(meta, body):
+    """sha256 of what the approval covers: the technologies and the acceptance check.
+
+    approved_hash itself is left out, otherwise the value could never match.
+    sort_keys makes the result independent of key order in the YAML.
+    """
+    covered = {
+        "technologies": meta.get("technologies"),
+        "acceptance": section_text(body, "Criteriu de acceptare"),
+    }
+    data = json.dumps(covered, sort_keys=True, ensure_ascii=False, default=str)
+    return hashlib.sha256(data.encode("utf-8")).hexdigest()
+
+
 def check_plan():
     if not PLAN.exists():
         error(PLAN, "file is missing")
@@ -58,6 +86,15 @@ def check_plan():
         datetime.date.fromisoformat(str(meta.get("approved_on")))
     except ValueError:
         error(PLAN, "approved_on must be a date in YYYY-MM-DD format")
+    expected = plan_hash(meta, body)
+    if not meta.get("approved_hash"):
+        error(PLAN, f"approved_hash is empty; after review set it to {expected}")
+    elif str(meta["approved_hash"]) != expected:
+        error(
+            PLAN,
+            "approved_hash does not match: technologies or the acceptance check changed "
+            "after approval. Set status back to draft and approve again.",
+        )
     for section in PLAN_SECTIONS:
         # Placeholder text is kept in HTML comments, so a comment alone counts as empty.
         if not re.search(rf"^## {re.escape(section)}\n+[^#\s<]", body, re.M):
@@ -113,6 +150,14 @@ def check_markdown():
             if local and not (path.parent / local).exists():
                 error(path, f"broken link to {target}")
 
+
+if "--plan-hash" in sys.argv:
+    meta, body = split_frontmatter(PLAN)
+    if meta is None:
+        print("\n".join(errors))
+        sys.exit(1)
+    print(plan_hash(meta, body))
+    sys.exit(0)
 
 check_plan()
 check_skills()
