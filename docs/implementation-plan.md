@@ -3,6 +3,7 @@
 status: draft            # draft | approved
 approved_by: ""          # GitHub login of the person approving
 approved_on: ""          # YYYY-MM-DD
+approved_hash: ""        # output of: python3 scripts/check_repo.py --plan-hash
 technologies: []
 # Example entry (copy into the list above):
 #   - name: phaser

@@ -26,4 +26,6 @@ Completează fișa numai când apare o sarcină concretă. Înregistrează separ
 | Licență | Fișierul și identificatorul la commit-ul ales |
 | Fișiere utile | Exemple, teste, API și implementare relevante |
 | Rezultat | Întrebarea rezolvată și ce s-a verificat în aplicație |
+| Încredere | `verificat` (rulat sau citit la commit-ul ales), `dedus` (din cod sau documentație, nerulat) sau `presupunere` |
+| Ce n-am verificat | Surse sărite și întrebări rămase deschise; un gol nu înseamnă că totul e în regulă |
 | Stare | Activă sau inactivă; fără ștergere automată |
